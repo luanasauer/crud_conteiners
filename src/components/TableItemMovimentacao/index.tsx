@@ -1,5 +1,6 @@
-import React from 'react';
 import { Button, TableColumn, TableLine } from './styles';
+import { AiOutlineEdit } from 'react-icons/ai';
+import {BsTrash} from 'react-icons/bs';
 
 interface Movimentcao {
     id: number;
@@ -15,9 +16,9 @@ type Props = {
     handleDelete: (id: number) => void;
 }
 
-export function TableItemMovimentacao({ item, handleEdit, handleDelete }: Props){
+export function TableItemMovimentacao({ item, handleEdit, handleDelete }: Props) {
     const dataInicio = new Date(item.dataHora_Inicio).toLocaleDateString();
-    const horaInicio = new Date(item.dataHora_Inicio).toLocaleTimeString(); 
+    const horaInicio = new Date(item.dataHora_Inicio).toLocaleTimeString();
     const dataFim = new Date(item.dataHora_Fim).toLocaleDateString();
     const horaFim = new Date(item.dataHora_Fim).toLocaleTimeString();
 
@@ -27,9 +28,19 @@ export function TableItemMovimentacao({ item, handleEdit, handleDelete }: Props)
             <TableColumn>{item.id_conteiner}</TableColumn>
             <TableColumn>{item.tipo_movimentacao}</TableColumn>
             <TableColumn>{dataInicio} {horaInicio}</TableColumn>
-            <TableColumn>{dataFim} {horaFim}</TableColumn> 
-            <TableColumn> <Button onClick={() => handleEdit(item.id)}>Editar</Button></TableColumn>
-            <TableColumn> <Button onClick={() => handleDelete(item.id)}>Excluir</Button></TableColumn>
+            <TableColumn>{dataFim} {horaFim}</TableColumn>
+            <TableColumn>
+                <Button onClick={() => handleEdit(item.id)}>
+                    <AiOutlineEdit />
+                    <p style={{ padding: 5 }}> Editar </p>
+                </Button>
+            </TableColumn>
+            <TableColumn>
+                <Button onClick={() => handleDelete(item.id)}>
+                    <BsTrash/>
+                    <p style={{ padding: 5 }}> Excluir </p>
+                </Button>
+            </TableColumn>
         </TableLine>
     );
 }

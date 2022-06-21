@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Header } from '../../components/Header';
 import { TableItemMovimentacao } from '../../components/TableItemMovimentacao';
 import { api } from '../../services/api';
 
 import {
   Button,
-  Container, Input, InputLabel, InputTitle, Select, Table, TableHeadColumn, Title
+  Container,
+  Input,
+  InputLabel,
+  InputTitle,
+  Select,
+  Table,
+  TableHeadColumn,
 } from './styles';
 
 interface MovimentacaoProps {
@@ -39,7 +46,6 @@ export function Movimentacoes() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [idEditable, setIdEditable] = useState('');
-  const [error, setError] = useState('');
 
   useEffect(() => {
     getMovimentacoes();
@@ -60,6 +66,10 @@ export function Movimentacoes() {
     setIdConteiner(0);
     setTipoMovimentacao('');
     setIsEditing(false);
+    setDataInicio('');
+    setHoraInicio('');
+    setDataFim('');
+    setHoraFim('');
   }
 
   const handleAddMovimentacao = async () => {
@@ -77,7 +87,6 @@ export function Movimentacoes() {
     const json = await api.addMovimentacao(data);
 
     if (json.error) {
-      setError(json.error);
       alert(json.error);
     } else {
       getMovimentacoes();
@@ -128,7 +137,6 @@ export function Movimentacoes() {
     const json = await api.updateMovimentacao(idEditable, data);
 
     if (json.error) {
-      setError(json.error);
       alert(json.error);
     } else {
       getConteiners();
@@ -142,7 +150,6 @@ export function Movimentacoes() {
     if (window.confirm('Tem certeza que deseja excluir a movimentação?')) {
       const json = await api.deleteMovimentacao(movimentacaoId.toString());
       if (json.error) {
-        setError(json.error);
         alert(json.error);
 
       } else {
@@ -153,7 +160,7 @@ export function Movimentacoes() {
 
   return (
     <>
-      <Title>Movimentações</Title>
+      <Header title='Movimentações' />
       <Container>
         <InputLabel>
           <InputTitle>Conteiner</InputTitle>
@@ -185,11 +192,19 @@ export function Movimentacoes() {
 
         <InputLabel>
           <InputTitle>Data Inicio</InputTitle>
-          <Input type="date" value={dataInicio} onChange={e => setDataInicio(e.target.value)} />
+          <Input
+            type="date"
+            value={dataInicio}
+            onChange={e => setDataInicio(e.target.value)}
+          />
         </InputLabel>
         <InputLabel>
           <InputTitle>Hora Inicio</InputTitle>
-          <Input type="time" value={horaInicio} onChange={e => setHoraInicio(e.target.value)} />
+          <Input
+            type="time"
+            value={horaInicio}
+            onChange={e => setHoraInicio(e.target.value)}
+          />
         </InputLabel>
 
 
@@ -198,7 +213,7 @@ export function Movimentacoes() {
           <Input type="date" value={dataFim} onChange={e => setDataFim(e.target.value)} />
         </InputLabel>
         <InputLabel>
-          <InputTitle>Data Fim</InputTitle>
+          <InputTitle>Hora Fim</InputTitle>
           <Input type="time" value={horaFim} onChange={e => setHoraFim(e.target.value)} />
         </InputLabel>
         <InputLabel>
@@ -226,9 +241,9 @@ export function Movimentacoes() {
           </tr>
         </thead>
         <tbody>
-          {listMovimentacoes.map((item, index) => (
+          {listMovimentacoes.map((item) => (
             <TableItemMovimentacao
-              key={index}
+              key={item.id}
               item={item}
               handleDelete={handleRemove}
               handleEdit={handleEdit}

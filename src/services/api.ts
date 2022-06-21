@@ -10,7 +10,6 @@ interface ConteinerProps {
 }
 
 interface MovimentacaoProps {
-    // id: number;
     id_conteiner: number;
     tipo_movimentacao: string;
     dataHora_Inicio: string;
@@ -96,8 +95,6 @@ export const api = {
         );
         return json;
     },
-
-
 
     getMovimentacoes: async () => {
         const json = await apiFetchGet(

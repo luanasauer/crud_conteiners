@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 
-export const Title = styled.h1`
-  color:#5D8DF5 ;
-  text-align: center;
-`;
-
 export const InputTitle = styled.div`
     font-weight: bold;
     margin-bottom: 5px;
-`; 
+`;
 
 export const Container = styled.div`
- padding-bottom: 100px; 
+    padding-bottom: 100px; 
     background-color: #FFF;
     box-shadow: 0px 0px 5px #CCC;
     border-radius: 10px;
@@ -40,7 +35,7 @@ export const Select = styled.select`
     padding: 0 5px;
     border: 1px solid #5D8DF5 ;
     border-radius: 5px;
-`; 
+`;
 
 export const Button = styled.button`
     width: 100%;
@@ -53,10 +48,12 @@ export const Button = styled.button`
     cursor: pointer;
 
     &:hover {
-        background-color: blue;
+        background-color: #5D8FF6; 
         color: white;
     }
-`; 
+    transition: background 200ms;
+
+`;
 
 export const Table = styled.table`
     width: 100%;

@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Header } from '../../components/Header';
 import { TableItem } from '../../components/TableItem';
 import { api } from '../../services/api';
 import { clientes } from '../../utils/clienteData';
 
 import {
   Button,
-  Container, Input, InputLabel, InputTitle, Select, Table, TableHeadColumn, Title
+  Container, 
+  Input, 
+  InputLabel, 
+  InputTitle, 
+  Select, 
+  Table,
+  TableHeadColumn
 } from './styles';
 
 interface ConteinerProps {
@@ -25,8 +32,7 @@ export function Conteiner() {
   const [tipo, setTipo] = useState(0);
   const [status, setStatus] = useState('');
   const [categoria, setCategoria] = useState('');
-
-  const [error, setError] = useState('');
+  
   const [loading, setLoading] = useState(true);
 
   const [listConteiner, setListConteiner] = useState<ConteinerProps[]>([]);
@@ -51,7 +57,7 @@ export function Conteiner() {
     if (numero_conteiner_validacao.length === 11) {
       if ((numero_conteiner_validacao.slice(0, 4).match(/[A-Z]{4}/) != null)) {
         if ((numero_conteiner_validacao.slice(4, 11).match(/[0-9]{7}/) != null)) {
-          var camposValidos = true;
+          camposValidos = true;
         } else {
           alert('Os 7 ultimos dígitos do conteiner devem ser de 1-9');
         }
@@ -64,7 +70,6 @@ export function Conteiner() {
     }
 
     if (camposValidos === true) {
-
       const data = {
         cliente,
         numero_conteiner,
@@ -72,9 +77,9 @@ export function Conteiner() {
         status,
         categoria,
       };
+      
       const json = await api.addConteiner(data);
       if (json.error) {
-        setError(json.error);
         alert(json.error);
 
       } else {
@@ -109,8 +114,7 @@ export function Conteiner() {
 
 
     if (json.error) {
-      setError(json.error);
-      alert(json.error);
+       alert(json.error);
     } else {
       getConteiners();
       setIdEditable('0');
@@ -132,7 +136,6 @@ export function Conteiner() {
     if (window.confirm('Tem certeza que deseja excluir este conteiner?')) {
       const json = await api.deleteConteiner(conteinerId.toString());
       if (json.error) {
-        setError(json.error);
         alert(json.error);
 
       } else {
@@ -150,10 +153,8 @@ export function Conteiner() {
   }
 
   return (
-
     <>
-
-      <Title>Conteiners</Title>
+      <Header title={'Conteiners'}/> 
       <Container>
         <InputLabel>
           <InputTitle>Cliente</InputTitle>
@@ -229,9 +230,9 @@ export function Conteiner() {
           </tr>
         </thead>
         <tbody>
-          {listConteiner.map((item, index) => (
+          {listConteiner.map((item) => (
             <TableItem
-              key={index}
+              key={item.id}
               item={item}
               handleDelete={handleRemove}
               handleEdit={handleEdit}
