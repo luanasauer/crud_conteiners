@@ -7,6 +7,7 @@ Projeto desenvolvido para fins de aprendizado.
 <ul>
     <li>ReactJS</li>
     <li>Typescript</li>
+    <li>Styled Components</li>
 </ul> 
 
 #
@@ -19,7 +20,6 @@ Projeto desenvolvido para fins de aprendizado.
     <li> Categoria: Importação / Exportação </li>
 </ol> 
 
-
 #
 <h3>Crud de Movimentações</h3>
 <ol>    
@@ -27,3 +27,7 @@ Projeto desenvolvido para fins de aprendizado.
     <li> Data e Hora do Início </li>
     <li> Data e Hora do Fim </li>
 </ol>
+
+#
+
+O projeto possui integração com api em NodeJS e MySql.
