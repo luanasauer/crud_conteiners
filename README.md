@@ -2,16 +2,14 @@
 
 Projeto desenvolvido para fins de aprendizado.
 
-<h1>Stack</h1>
-#
+#<h3>Stack</h3>
 <ul>
     <li>ReactJS</li>
     <li>Typescript</li>
 </ul> 
 
 
-Crud de Contêiner
-#
+#<h3>Crud de Contêiner</h3>
 <ol>
     <li> Cliente </li>
     <li> Número do contêiner (4 letras e 7 números. Ex: TEST1234567) </li>
@@ -21,8 +19,7 @@ Crud de Contêiner
 </ol> 
 
 
-Crud de Movimentações
-#
+#</h3>Crud de Movimentações<h3>
 <ol>    
     <li> Tipo de Movimentação (embarque,descarga,gatein,gateout,reposicionamento,pesagem,scanner) </li>
     <li> Data e Hora do Início </li>
